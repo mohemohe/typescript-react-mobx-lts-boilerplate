@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import { Provider } from "mobx-react";
 import Router, { RouteInfo } from "./containers/Router";
 import Store from "./stores";
@@ -16,12 +17,11 @@ const routes: RouteInfo[] = [
     },
 ];
 
-export default class Index extends React.Component<{}, {}> {
-    public render() {
-        return (
-            <Provider {...Store}>
-                <Router {...this.props} routes={routes} />
-            </Provider>
-        );
-    }
+export function render() {
+    ReactDOM.render(
+        <Provider {...Store}>
+            <Router routes={routes} />
+        </Provider>,
+        document.querySelector("#app")
+    );
 }
